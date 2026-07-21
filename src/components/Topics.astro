@@ -54,9 +54,6 @@ const topics = [
   .topics__item {
     padding: 1.1rem 0;
     border-bottom: 1px solid var(--color-border);
-    /* Primed for future category pages: reads as interactive on hover */
-    cursor: pointer;
-    transition: padding-left 0.25s ease;
   }
 
   /* The topic phrase itself carries the shine (text-clipped gradient) */
@@ -69,13 +66,13 @@ const topics = [
     /* A light sage highlight band parked off the right edge of the text */
     background-image: linear-gradient(
       110deg,
-      var(--color-primary) 0%,
-      var(--color-primary) 38%,
-      #7f9d84 47%,
-      #bcd2c0 50%,
-      #7f9d84 53%,
-      var(--color-primary) 62%,
-      var(--color-primary) 100%
+      var(--color-primary-dark) 0%,
+      var(--color-primary-dark) 38%,
+      #7fa587 47%,
+      #b8d0bd 50%,
+      #7fa587 53%,
+      var(--color-primary-dark) 62%,
+      var(--color-primary-dark) 100%
     );
     background-size: 300% 100%;
     background-position: 100% 0;
@@ -84,10 +81,6 @@ const topics = [
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-  }
-
-  .topics__item:hover {
-    padding-left: 0.5rem;
   }
 
   /* Sweep the highlight across the text on hover */
@@ -105,10 +98,6 @@ const topics = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .topics__item,
-    .topics__item:hover {
-      transition: none;
-    }
     .topics__item:hover .topics__label {
       animation: none;
     }

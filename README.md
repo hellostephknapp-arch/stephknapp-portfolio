@@ -9,13 +9,21 @@ Opening → Portfolio (reports + articles) → Testimonials → Topics → Conta
 
 ## Design system
 
-| Token            | Value     | Use                          |
-| ---------------- | --------- | ---------------------------- |
-| Primary          | `#3d5941` | Forest green — headers, CTAs |
-| Accent           | `#6b3d4a` | Wine/burgundy — links        |
-| Background       | `#faf9f7` | Warm off-white               |
-| Text primary     | `#2a2a2a` | Warm almost-black            |
-| Text secondary   | `#6b6b6b` | Muted                        |
+| Token            | Value     | Use                                             |
+| ---------------- | --------- | ----------------------------------------------- |
+| Primary          | `#709176` | Sage green — brand accent, borders, topic shine |
+| Primary dark     | `#557259` | Deep sage — headings, filled sections, buttons  |
+| Primary darker   | `#3f5647` | Deepest sage — hover on dark fills              |
+| Accent           | `#8b4342` | Deep maroon-red — links, emphasis, highlights   |
+| Accent warm      | `#98524b` | Warm maroon-brown — hover states                |
+| Background       | `#faf9f7` | Warm off-white                                  |
+| Text primary     | `#262626` | Warm almost-black                               |
+| Text secondary   | `#6b6b6b` | Muted                                           |
+
+Sage `#709176` is a mid-tone, so white/body text on it only reaches ~3.5:1 (below
+WCAG AA). Filled areas that carry light text (the flagship card, contact block,
+buttons) and headings therefore use the deepened **Primary dark** `#557259`, which
+stays unmistakably sage but passes AA. Pure sage is reserved for accents and borders.
 
 - **Display / headers:** Inter Bold
 - **Body:** Crimson Text (serif)
