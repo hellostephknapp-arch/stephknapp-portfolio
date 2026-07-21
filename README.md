@@ -5,7 +5,7 @@ A single-page portfolio for **Steph Knapp**, a B2B SaaS content writer. Built wi
 
 ## Page flow
 
-Opening → Portfolio (reports + articles) → Testimonials → Domains → Contact
+Opening → Portfolio (reports + articles) → Testimonials → Topics → Contact
 
 ## Design system
 

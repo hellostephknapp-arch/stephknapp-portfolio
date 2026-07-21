@@ -1,0 +1,122 @@
+---
+const topics = [
+  'Email marketing',
+  'Creator economy',
+  'Legal tech',
+  'Product experience',
+  'Work management',
+];
+---
+<section id="topics" class="section topics">
+  <div class="container topics__inner">
+    <div class="topics__copy">
+      <p class="eyebrow">Where the work lands</p>
+      <h2 class="section-title">Topics</h2>
+      <p class="lead">
+        My work lands mostly in B2B SaaS: email marketing, creator economy, legal tech,
+        product experience, work management. Each space has its own language and
+        concerns. I learn the domain and write for the people in it.
+      </p>
+    </div>
+    <ul class="topics__list" aria-label="Topics of expertise">
+      {topics.map((t) => (
+        <li class="topics__item"><span class="topics__label">{t}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .topics__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .topics__copy {
+    max-width: 52ch;
+  }
+
+  .topics__copy .lead {
+    color: var(--color-text);
+  }
+
+  .topics__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .topics__item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    /* Primed for future category pages: reads as interactive on hover */
+    cursor: pointer;
+    transition: padding-left 0.25s ease;
+  }
+
+  /* The topic phrase itself carries the shine (text-clipped gradient) */
+  .topics__label {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    /* A light sage highlight band parked off the right edge of the text */
+    background-image: linear-gradient(
+      110deg,
+      var(--color-primary) 0%,
+      var(--color-primary) 38%,
+      #7f9d84 47%,
+      #bcd2c0 50%,
+      #7f9d84 53%,
+      var(--color-primary) 62%,
+      var(--color-primary) 100%
+    );
+    background-size: 300% 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .topics__item:hover {
+    padding-left: 0.5rem;
+  }
+
+  /* Sweep the highlight across the text on hover */
+  .topics__item:hover .topics__label {
+    animation: topic-shine 0.9s ease forwards;
+  }
+
+  @keyframes topic-shine {
+    from {
+      background-position: 100% 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .topics__item,
+    .topics__item:hover {
+      transition: none;
+    }
+    .topics__item:hover .topics__label {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 780px) {
+    .topics__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
