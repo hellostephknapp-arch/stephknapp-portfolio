@@ -1,0 +1,277 @@
+---
+const articles = [
+  {
+    title: 'How to Build Your First AI Accountability Policy',
+    publication: 'Ironclad',
+    date: 'July 2026',
+    href: 'https://ironcladapp.com/resources/articles/how-to-set-up-legal-ai-accountability',
+  },
+  {
+    title: 'Using Countdown Timers to Boost Engagement',
+    publication: 'Litmus',
+    date: 'February 2025',
+    href: 'https://www.litmus.com/blog/using-countdown-timers-to-boost-engagement',
+  },
+  {
+    title: 'How Maurizio Leo Switched from Mailchimp to Kit',
+    publication: 'Kit',
+    date: 'September 2024',
+    href: 'https://kit.com/resources/blog/maurizio-leo-case-study',
+  },
+  {
+    title: '7 Online Sales Strategies for Creators Who Hate Selling',
+    publication: 'Kit',
+    date: 'January 2025',
+    href: 'https://kit.com/resources/blog/sales-strategy',
+  },
+  {
+    title: '9 Best Meeting Scheduling Software in 2025',
+    publication: 'Calendly',
+    date: 'January 2025',
+    href: 'https://calendly.com/blog/meeting-scheduling-software',
+  },
+];
+---
+<section id="work" class="section work">
+  <div class="container">
+    <p class="eyebrow">Selected work</p>
+    <h2 class="section-title">Portfolio</h2>
+    <p class="work__intro">
+      I spend most of my time on two things: research reports that synthesize survey
+      data into industry insights, and long-form content that educates while it sells.
+      I've shaped narratives for reports, written bylined articles, developed case
+      studies, and built guides. The work spans legal tech, email marketing, creator
+      platforms, and scheduling software—each with its own language and stakes.
+    </p>
+  </div>
+
+  <!-- Flagship reports -->
+  <div class="container work__group">
+    <h3 class="work__group-title">Flagship reports</h3>
+    <div class="reports">
+      <a class="report report--featured" href="https://kit.com/reports/creator-economy-2024" target="_blank" rel="noopener noreferrer">
+        <span class="report__tag">Report · Kit</span>
+        <span class="report__title">State of Creator Economy 2024</span>
+        <span class="report__desc">
+          Synthesized responses from thousands of creators into a single, publishable
+          narrative—turning raw survey data into benchmarks and insights the industry
+          could cite.
+        </span>
+        <span class="report__cta">Read the report<span class="arrow" aria-hidden="true">↗</span></span>
+      </a>
+
+      <div class="report report--quiet">
+        <span class="report__tag">Report · Confidential</span>
+        <p class="report__desc report__desc--quote">
+          "I took research findings and structured them into high-impact reports for
+          enterprise decision-makers in legal tech and procurement spaces."
+        </p>
+        <span class="report__note">Client name withheld under NDA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bylined articles -->
+  <div class="container work__group">
+    <h3 class="work__group-title">Supporting bylined articles</h3>
+    <ul class="articles">
+      {articles.map((a) => (
+        <li class="article">
+          <a class="article__link" href={a.href} target="_blank" rel="noopener noreferrer">
+            <span class="article__title">{a.title}</span>
+            <span class="article__meta">
+              <span class="article__pub">{a.publication}</span>
+              <span class="article__dot" aria-hidden="true">·</span>
+              <span class="article__date">{a.date}</span>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .work__intro {
+    max-width: 62ch;
+    font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+    color: var(--color-text);
+    margin-bottom: 0;
+  }
+
+  .work__group {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .work__group-title {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2rem;
+  }
+
+  /* Reports */
+  .reports {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .report {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border: 1px solid var(--color-border);
+    background-color: #fff;
+  }
+
+  .report--featured {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .report--featured:hover {
+    background-color: var(--color-primary-dark);
+    color: #fff;
+  }
+
+  .report--quiet {
+    background-color: var(--color-surface);
+    border-color: var(--color-border);
+  }
+
+  .report__tag {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .report--quiet .report__tag {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .report__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .report__desc {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+  }
+
+  .report--featured .report__desc {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .report__desc--quote {
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    color: var(--color-text);
+    margin-bottom: 1.25rem;
+  }
+
+  .report__cta {
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .report__note {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    margin-top: auto;
+  }
+
+  /* Articles */
+  .articles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .article__link {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.5rem 0.25rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .article__link:hover {
+    color: var(--color-accent);
+  }
+
+  .article__title {
+    font-family: var(--font-body);
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .article__meta {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+  }
+
+  .article__dot {
+    margin: 0 0.4rem;
+  }
+
+  .arrow {
+    font-family: var(--font-ui);
+    transition: transform 0.15s ease;
+  }
+
+  .article__link:hover .arrow,
+  .report--featured:hover .arrow {
+    transform: translate(2px, -2px);
+  }
+
+  @media (max-width: 780px) {
+    .reports {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .article__link {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'title arrow'
+        'meta meta';
+      gap: 0.5rem 1rem;
+    }
+    .article__title { grid-area: title; }
+    .article__meta { grid-area: meta; white-space: normal; }
+    .article__link .arrow { grid-area: arrow; }
+  }
+</style>

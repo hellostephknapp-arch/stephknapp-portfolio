@@ -1,0 +1,101 @@
+---
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="#top" class="brand">
+      <span class="brand__name">Steph Knapp</span>
+      <span class="brand__role">B2B SaaS Content Writer</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#domains">Domains</a>
+      <a href="#contact" class="site-nav__cta">Get in touch</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: color-mix(in srgb, var(--color-bg) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.5rem;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    color: var(--color-text);
+  }
+
+  .brand:hover {
+    color: var(--color-text);
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .brand__role {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+  }
+
+  .site-nav a {
+    color: var(--color-text-secondary);
+  }
+
+  .site-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .site-nav__cta {
+    color: var(--color-primary) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-primary);
+  }
+
+  .site-nav__cta:hover {
+    background-color: var(--color-primary);
+    color: #fff !important;
+  }
+
+  /* Hide secondary links on small screens, keep brand + CTA */
+  @media (max-width: 640px) {
+    .brand__role {
+      display: none;
+    }
+    .site-nav a:not(.site-nav__cta) {
+      display: none;
+    }
+  }
+</style>

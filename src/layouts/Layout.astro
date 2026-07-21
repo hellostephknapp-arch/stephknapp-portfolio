@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Steph Knapp — B2B SaaS Content Writer',
+  description = 'Steph Knapp writes clear, narrative-driven content for B2B SaaS companies — research reports and long-form content that educates while it sells.',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const faviconHref = `${base.replace(/\/$/, '')}/favicon.svg`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Steph Knapp" />
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,75 @@
+---
+const domains = [
+  'Email marketing',
+  'Creator economy',
+  'Legal tech',
+  'Product experience',
+  'Work management',
+];
+---
+<section id="domains" class="section domains">
+  <div class="container domains__inner">
+    <div class="domains__copy">
+      <p class="eyebrow">Where the work lands</p>
+      <h2 class="section-title">Domains</h2>
+      <p class="lead">
+        My work lands mostly in B2B SaaS: email marketing, creator economy, legal tech,
+        product experience, work management. Each space has its own language and
+        concerns. I learn the domain and write for the people in it.
+      </p>
+    </div>
+    <ul class="domains__list" aria-label="Domains of expertise">
+      {domains.map((d) => (
+        <li class="domains__item">{d}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .domains__inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .domains__copy {
+    max-width: 52ch;
+  }
+
+  .domains__copy .lead {
+    color: var(--color-text);
+  }
+
+  .domains__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .domains__item {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: padding-left 0.15s ease, color 0.15s ease;
+  }
+
+  .domains__item:hover {
+    padding-left: 0.5rem;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 780px) {
+    .domains__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
