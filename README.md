@@ -34,13 +34,19 @@ npm run preview
 
 ## Contact form (Formspree)
 
-The contact form posts to [Formspree](https://formspree.io/). Before it will work:
+The contact form submits to [Formspree](https://formspree.io/) (form ID `mvzeqwko`)
+over AJAX via [`@formspree/ajax`](https://github.com/formspree/formspree-js), so
+visitors stay on the page and see an inline success message. The `action`/`method`
+attributes on the form are a no-JS fallback that still posts to Formspree if the
+script fails to load.
 
-1. Create a form at [formspree.io](https://formspree.io/) and copy its form ID.
-2. In [`src/components/Contact.astro`](src/components/Contact.astro), replace
-   `YOUR_FORM_ID` in `FORMSPREE_ENDPOINT` with your ID.
+The form ID lives in two places in
+[`src/components/Contact.astro`](src/components/Contact.astro): the `FORMSPREE_ID`
+constant (frontmatter) and the `initForm({ formId })` call in the `<script>`. Update
+both if the form ever changes.
 
-Until then, submissions won't be delivered.
+Field errors, the success banner, and the disabled-while-submitting button are all
+styled to match the design (`useDefaultStyles: false`).
 
 ## Deployment
 

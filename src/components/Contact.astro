@@ -1,6 +1,8 @@
 ---
-// Replace YOUR_FORM_ID with your Formspree form ID (formspree.io → New form).
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Live Formspree form. AJAX submission is handled by @formspree/ajax (see <script> below);
+// the action/method attributes are a no-JS fallback that still posts to Formspree.
+const FORMSPREE_ID = 'mvzeqwko';
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 ---
 <section id="contact" class="section contact">
   <div class="container contact__inner">
@@ -13,29 +15,47 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
     </div>
 
     <form
+      id="contact-form"
       class="contact__form"
       action={FORMSPREE_ENDPOINT}
       method="POST"
     >
-      <div class="field">
-        <label class="field__label" for="name">Name</label>
-        <input class="field__input" type="text" id="name" name="name" required autocomplete="name" />
+      <!-- Success + form-level error banners (revealed by @formspree/ajax via data-fs-active) -->
+      <div class="form-banner form-banner--success" data-fs-success role="status">
+        Thanks for reaching out—I'll get back to you soon.
+      </div>
+      <div class="form-banner form-banner--error" data-fs-error role="alert">
+        Something went wrong sending your message. Please email me directly at
+        <a href="mailto:hello@stephknapp.com">hello@stephknapp.com</a>.
       </div>
 
-      <div class="field">
-        <label class="field__label" for="email">Email</label>
-        <input class="field__input" type="email" id="email" name="email" required autocomplete="email" />
+      <div class="contact__fields">
+        <div class="field">
+          <label class="field__label" for="name">Name</label>
+          <input class="field__input" type="text" id="name" name="name" required autocomplete="name" data-fs-field />
+          <span class="field__error" data-fs-error="name"></span>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="email">Email</label>
+          <input class="field__input" type="email" id="email" name="email" required autocomplete="email" data-fs-field />
+          <span class="field__error" data-fs-error="email"></span>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="project">What do you have in mind?</label>
+          <textarea class="field__input" id="project" name="message" rows="5" required data-fs-field></textarea>
+          <span class="field__error" data-fs-error="message"></span>
+        </div>
+
+        <!-- Custom email subject line -->
+        <input type="hidden" name="_subject" value="New project inquiry from your portfolio" />
+        <!-- Honeypot for spam bots -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
+
+        <button type="submit" class="btn btn--primary contact__submit" data-fs-submit-btn>Send message</button>
       </div>
 
-      <div class="field">
-        <label class="field__label" for="project">What do you have in mind?</label>
-        <textarea class="field__input" id="project" name="message" rows="5" required></textarea>
-      </div>
-
-      <!-- Honeypot for spam bots -->
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
-
-      <button type="submit" class="btn btn--primary contact__submit">Send message</button>
       <p class="contact__fallback">
         Prefer email? Reach me at
         <a href="mailto:hello@stephknapp.com">hello@stephknapp.com</a>.
@@ -43,6 +63,21 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
     </form>
   </div>
 </section>
+
+<script>
+  import { initForm } from '@formspree/ajax';
+
+  initForm({
+    formElement: '#contact-form',
+    formId: 'mvzeqwko',
+    // We provide our own on-brand styles instead of the library's defaults.
+    useDefaultStyles: false,
+    // Collapse the fields once the message is sent, leaving just the thank-you banner.
+    onSuccess: (context) => {
+      context.form.classList.add('is-sent');
+    },
+  });
+</script>
 
 <style>
   .contact {
@@ -81,6 +116,12 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
     gap: 1.25rem;
   }
 
+  .contact__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
   .field {
     display: flex;
     flex-direction: column;
@@ -113,9 +154,22 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
     box-shadow: 0 0 0 3px rgba(217, 199, 206, 0.4);
   }
 
+  /* Invalid field state set by @formspree/ajax (aria-invalid) */
+  .field__input[aria-invalid='true'] {
+    border-color: #e7b8a4;
+    box-shadow: 0 0 0 3px rgba(231, 184, 164, 0.25);
+  }
+
   textarea.field__input {
     resize: vertical;
     min-height: 7rem;
+  }
+
+  /* Field-level error text */
+  .field__error {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: #f3ded3;
   }
 
   .contact__submit {
@@ -139,6 +193,42 @@ const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
     color: #fff;
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  /* --- Formspree AJAX banners (we own the styles; useDefaultStyles:false) --- */
+  /* Hidden until the library adds data-fs-active */
+  .form-banner:not([data-fs-active]) {
+    display: none;
+  }
+
+  .form-banner {
+    font-family: var(--font-ui);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    padding: 1rem 1.25rem;
+    background-color: var(--color-bg);
+    border-left: 3px solid var(--color-primary);
+    color: var(--color-text);
+  }
+
+  .form-banner a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .form-banner--success {
+    border-left-color: var(--color-primary);
+  }
+
+  .form-banner--error {
+    border-left-color: var(--color-accent);
+  }
+
+  /* Once submitted successfully, hide the inputs and keep the thank-you banner */
+  .contact__form.is-sent .contact__fields,
+  .contact__form.is-sent .contact__fallback {
+    display: none;
   }
 
   @media (max-width: 780px) {
