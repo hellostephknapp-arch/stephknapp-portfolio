@@ -35,7 +35,7 @@ Fonts are self-hosted via `@fontsource`, so there are no external font requests.
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/stephknapp-portfolio
+npm run dev      # http://localhost:4321/
 npm run build    # outputs to ./dist
 npm run preview
 ```
@@ -65,6 +65,17 @@ and publishes it to GitHub Pages.
 **One-time setup:** In the GitHub repo, go to **Settings → Pages → Build and
 deployment → Source** and select **GitHub Actions**.
 
-The site is configured for the project path `/stephknapp-portfolio` (see `base` in
-[`astro.config.mjs`](astro.config.mjs)). If you later add a custom domain, update
-`site` and `base` accordingly.
+### Custom domain
+
+The site is served from **https://stephknapp.com** (apex domain). This is wired up in
+two places:
+
+- [`astro.config.mjs`](astro.config.mjs) sets `site: 'https://stephknapp.com'` with no
+  `base`, so assets resolve from the root.
+- [`public/CNAME`](public/CNAME) contains `stephknapp.com`, which is copied into every
+  build so GitHub Pages keeps the custom domain across Actions deploys.
+
+DNS at the domain registrar must point the apex `stephknapp.com` to GitHub Pages via
+`A` records (185.199.108–111.153) and `AAAA` records (2606:50c0:8000–8003::153). An
+optional `www` `CNAME` → `hellostephknapp-arch.github.io` covers the www subdomain.
+After DNS resolves, enable **Enforce HTTPS** in Settings → Pages.
