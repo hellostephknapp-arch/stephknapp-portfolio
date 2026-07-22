@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import portrait from '../assets/steph-harbour.jpg';
 ---
 <section id="top" class="opening section">
   <div class="container">
@@ -6,19 +8,32 @@
     <h1 class="opening__headline">
       Direction becomes publication-ready work.
     </h1>
-    <div class="opening__body container--narrow">
-      <p>
-        I write content for B2B SaaS companies with clear narrative structure. I start
-        with the pieces you have—proprietary data, expert voices, ideas, arguments—and
-        combine them into one cohesive narrative. The result is ready-to-publish work
-        that speaks to readers' real concerns while supporting your marketing goals. I
-        work at a strategic level, so you don't have to be hands-on through the
-        process.
-      </p>
-      <div class="opening__actions">
-        <a href="#work" class="btn btn--primary">See the work</a>
-        <a href="#contact" class="btn btn--ghost">Start a project</a>
+
+    <div class="opening__lower">
+      <div class="opening__intro">
+        <p class="opening__body-text">
+          I write content for B2B SaaS companies with clear narrative structure. I start
+          with the pieces you have—proprietary data, expert voices, ideas, arguments—and
+          combine them into one cohesive narrative. The result is ready-to-publish work
+          that speaks to readers' real concerns while supporting your marketing goals. I
+          work at a strategic level, so you don't have to be hands-on through the
+          process.
+        </p>
+        <div class="opening__actions">
+          <a href="#work" class="btn btn--primary">See the work</a>
+          <a href="#contact" class="btn btn--ghost">Start a project</a>
+        </div>
       </div>
+
+      <figure class="opening__media">
+        <Image
+          src={portrait}
+          alt="Steph Knapp smiling on a harbour pier in the Scottish Highlands"
+          widths={[440, 660, 900, 1200]}
+          sizes="(max-width: 820px) 92vw, 520px"
+          class="opening__img"
+        />
+      </figure>
     </div>
   </div>
 </section>
@@ -32,19 +47,22 @@
   .opening__headline {
     font-size: clamp(2.4rem, 6vw, 4.25rem);
     max-width: 16ch;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 
-  .opening__body {
-    margin-inline: 0;
-    padding-inline: 0;
-    max-width: 60ch;
+  .opening__lower {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
   }
 
-  .opening__body p {
-    font-size: clamp(1.35rem, 2.4vw, 1.65rem);
+  .opening__body-text {
+    font-size: clamp(1.3rem, 2.2vw, 1.55rem);
     line-height: 1.55;
     color: var(--color-text);
+    max-width: 52ch;
+    margin-bottom: 0;
   }
 
   .opening__actions {
@@ -52,5 +70,27 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 2.25rem;
+  }
+
+  .opening__media {
+    margin: 0;
+  }
+
+  .opening__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 820px) {
+    .opening__lower {
+      grid-template-columns: 1fr;
+    }
+
+    .opening__media {
+      order: -1;
+      margin-bottom: 0.5rem;
+    }
   }
 </style>
